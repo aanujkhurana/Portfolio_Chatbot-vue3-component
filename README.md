@@ -3,7 +3,7 @@
 A reusable, friendly Vue 3 component powered by OpenAI that adds a smart portfolio assistant to your personal website.  
 Ask about your skills, projects, experience, or anything you define — it responds with context from your own data.
 
-![chatbot demo](https://aanujkhurana.github.io)
+![chatbot demo](https://github.com/aanujkhurana/ai-chatbox-vue-component/blob/8edc0e279fc9fde60546bd7eedce42aa2dea0dcc/public/image.png?raw=true)
 
 ---
 
