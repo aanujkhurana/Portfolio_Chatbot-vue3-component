@@ -85,14 +85,6 @@ Want to use it in a **React, Nuxt, or Svelte** project? DM me — a universal wr
 
 ---
 
-## 🧑‍💻 Author
-
-Made with ❤️ by [Anuj Khurana](https://github.com/anujkhurana)
-📍 Queensland, Australia
-📧 [anujkhurana@gmail.com](mailto:anujkhurana@gmail.com)
-
----
-
 ## 📄 License
 
 MIT — Feel free to use, fork, or improve!
