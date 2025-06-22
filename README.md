@@ -102,16 +102,10 @@ MIT — Feel free to use, fork, or improve!
 
 Give it a star ⭐ and share your portfolio using it! Contributions & feedback welcome.
 
-````
-
----
-
 ### Optional: Add badges at the top
 
 If you want badges for NPM, license, or GitHub stars:
 
-```md
 ![npm](https://img.shields.io/npm/v/vue-portfolio-chatbot)
 ![license](https://img.shields.io/npm/l/vue-portfolio-chatbot)
 ![GitHub stars](https://img.shields.io/github/stars/anujkhurana/vue-portfolio-chatbot?style=social)
-````
