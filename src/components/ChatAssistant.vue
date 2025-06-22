@@ -1,4 +1,3 @@
-// Placeholder: Add your ChatAssistant.vue code here
 <!-- src/components/ChatAssistant.vue -->
 <template>
   <div class="chatbox" :class="{ open: isOpen }">
@@ -7,7 +6,7 @@
     </button>
 
     <div class="chat-window" v-if="isOpen">
-      <div class="header">Ask Me Anything</div>
+      <div class="header">{{ title }}</div>
 
       <div class="messages" ref="messagesContainer">
         <div v-for="msg in messages" :key="msg.id" :class="['msg', msg.type]">
@@ -21,7 +20,7 @@
           ref="messageInput"
           v-model="currentMessage"
           type="text"
-          placeholder="Ask about my projects, skills..."
+          :placeholder="placeholder"
         />
         <button type="submit">➤</button>
       </form>
@@ -31,12 +30,14 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted, nextTick } from 'vue';
-import { buildSystemPrompt } from '../data/systemPrompt';
-import { contextData } from '../data/contextData';
 
 const props = defineProps<{
   openaiApiKey?: string;
   model?: string;
+  systemPrompt?: string;
+  title?: string;
+  placeholder?: string;
+  greeting?: string;
 }>();
 
 const isOpen = ref(false);
@@ -47,12 +48,18 @@ const messagesContainer = ref<HTMLElement | null>(null);
 const messageInput = ref<HTMLElement | null>(null);
 const conversationHistory = ref<any[]>([]);
 
-// Welcome
+const title = props.title || 'Ask Me Anything';
+const placeholder = props.placeholder || 'Ask about projects, skills, etc.';
+const greeting =
+  props.greeting ||
+  "Hi! I'm your portfolio assistant. Ask me about skills, projects, or experience.";
+
+// Initial greeting
 onMounted(() => {
   messages.value.push({
     id: 'welcome',
     type: 'bot',
-    text: "Hi, I'm your portfolio assistant! Ask me about Anuj’s skills, projects, or experience.",
+    text: greeting,
     timestamp: new Date(),
   });
 });
@@ -80,12 +87,12 @@ const formatMessage = (text: string) =>
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\n/g, '<br>');
 
-// API Call with Retry
+// Call OpenAI (with retries)
 const callOpenAI = async (userMessage: string, retry = 0): Promise<string> => {
   const payload = {
     model: props.model || 'gpt-3.5-turbo',
     messages: [
-      { role: 'system', content: buildSystemPrompt() },
+      { role: 'system', content: props.systemPrompt || 'You are a helpful assistant.' },
       ...conversationHistory.value,
       { role: 'user', content: userMessage },
     ],
@@ -131,7 +138,7 @@ const handleSendMessage = async () => {
   try {
     const response = props.openaiApiKey
       ? await callOpenAI(userText)
-      : "🤖 (Demo mode) I can't answer questions without an API key.";
+      : "🤖 Demo mode: Please provide an API key for full responses.";
 
     messages.value.push({
       id: `bot_${Date.now()}`,
@@ -149,7 +156,7 @@ const handleSendMessage = async () => {
     messages.value.push({
       id: `err_${Date.now()}`,
       type: 'bot',
-      text: err.message,
+      text: `❌ Error: ${err.message}`,
       timestamp: new Date(),
     });
   } finally {
@@ -163,12 +170,12 @@ const handleSendMessage = async () => {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 .toggle-btn {
-  background: #0d1117;
+  background: #111827;
   color: white;
-  padding: 0.5em 1em;
+  padding: 0.6em 1em;
   border-radius: 50px;
   border: none;
   cursor: pointer;
@@ -176,18 +183,19 @@ const handleSendMessage = async () => {
 .chat-window {
   width: 300px;
   height: 400px;
-  background: white;
+  background: #fff;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
   margin-top: 10px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #d1d5db;
 }
 .header {
-  background: #f3f4f6;
-  padding: 0.7em;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
+  background: #f9fafb;
+  padding: 0.8em;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
 }
 .messages {
   flex: 1;
@@ -209,17 +217,19 @@ const handleSendMessage = async () => {
 }
 form {
   display: flex;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #e5e7eb;
 }
 input {
   flex: 1;
   padding: 0.5em;
   border: none;
+  outline: none;
 }
 button[type='submit'] {
-  background: #0d1117;
+  background: #111827;
   color: white;
   border: none;
   padding: 0.5em 1em;
+  cursor: pointer;
 }
 </style>
