@@ -1,1 +1,3 @@
-export { default as ChatAssistant } from './components/ChatAssistant.vue';
+import ChatAssistant from './components/ChatAssistant.vue';
+export { ChatAssistant };
+export default ChatAssistant;

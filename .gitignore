@@ -1,0 +1,16 @@
+node_modules
+.DS_Store
+dist
+.env
+coverage
+.vscode
+npm-debug.log
+
+# Optional npm cache directory
+.npm
+# Optional eslint cache directory
+.eslintcache
+
+# Optional stylelint cache directory
+.stylelintcache
+
