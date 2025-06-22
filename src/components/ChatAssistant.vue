@@ -1,3 +1,4 @@
+// Placeholder: Add your ChatAssistant.vue code here
 <!-- src/components/ChatAssistant.vue -->
 <template>
   <div class="chatbox" :class="{ open: isOpen }">
