@@ -41,5 +41,13 @@
     "typescript": "^5.0.0",
     "@vitejs/plugin-vue": "^5.0.0",
     "vue": "^3.4.0"
-  }
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/aanujkhurana/Portfolio_Chatbot-vue3-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aanujkhurana/Portfolio_Chatbot-vue3-component/issues"
+  },
+  "homepage": "https://github.com/aanujkhurana/Portfolio_Chatbot-vue3-component#readme"
 }
