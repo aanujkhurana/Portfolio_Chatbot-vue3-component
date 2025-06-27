@@ -1,8 +1,6 @@
 # Vue Portfolio Chatbot
 ![npm](https://img.shields.io/npm/v/vue-portfolio-chatbot) ![license](https://img.shields.io/npm/l/vue-portfolio-chatbot)
 
-[![npm version](https://img.shields.io/npm/v/vue-portfolio-chatbot.svg)](https://www.npmjs.com/package/vue-portfolio-chatbot)
-
 
 A reusable, friendly Vue 3 component powered by OpenAI that adds a smart portfolio assistant to your personal website.  
 Ask about your skills, projects, experience, or anything you define — it responds with context from your own data.
